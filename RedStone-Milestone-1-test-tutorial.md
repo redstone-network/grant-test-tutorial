@@ -60,7 +60,7 @@ defenseModule.setTransferLimitation, the params is
 *  5000000000000
 ![](./img/12.jpg)
 
-### (2 alice try transfer 5000000000001 one and two times, will be fail. and account be temporarily frozen within 100 blocks
+### (2 alice try transfer 5000000000001 two times, will be fail. and account be temporarily frozen within 100 blocks
 defenseModule.safeTransfer
 * BOB
 * 5000000000001
@@ -114,12 +114,27 @@ defenseModule.freezeAccount
 # pallet-notification
 ## test notification config
 ### (1 run localservel
+docker run -p 3030:3030 -d -name notify-serve baidang201/notification /notification
 
 ### (2 alice set email notification config
+notification.setMail
+* 116174444@qq.com
+* titletest
+* body
+![](./img/23.jpg)
 
-### (3 set AmountLimit to 5000000000000 and trigger fail
+### (3 set AmountLimit to 5000000000000 
+defenseModule.setTransferLimitation, the params is
+* AmountLimit
+*  5000000000000
+![](./img/12.jpg)
 
-### (4 check email notification
+### (4 trigger fail
+![](./img/24.jpg)
+
+### (5 check email notification in serve log
+docker logs -f notify-serve
+![](./img/25.jpg)
 
 ## ref
 pallet-notification
