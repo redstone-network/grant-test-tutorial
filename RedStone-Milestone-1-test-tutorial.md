@@ -51,14 +51,75 @@ see testcase in https://github.com/redstone-network/redstone-node/blob/main/pall
 
 see api doc in https://redstone-node-doc.vercel.app/pallet_permission_capture/pallet/struct.Pallet.html#
 
-# pallet-defense and pallet-notification
+# pallet-defense 
 
-1
-2
-3
-4
-5
-6
+## 1 test transaction AmountLimit
+### (1 alice set AmountLimit to 5000000000000
+defenseModule.setTransferLimitation, the params is
+* AmountLimit
+*  5000000000000
+![](./img/12.jpg)
+
+### (2 alice try transfer 5000000000001 one and two times, will be fail. and account be temporarily frozen within 100 blocks
+defenseModule.safeTransfer
+* BOB
+* 5000000000001
+![](./img/13.jpg)
+
+
+### (3 check the tranfer event, there are not TransferSuccess event
+![](./img/19.jpg)
+
+## 2 test transaction FrequencyLimit
+### (1 bob set FrequencyLimit to less than 2 in 100 blocks
+defenseModule.setTransferLimitation, the params is
+* FrequencyLimit
+* 2
+* 100
+![](./img/14.jpg)
+
+### (2 bob transfer first time, will be Success
+defenseModule.safeTransfer
+* ALICE
+* 1000000000001
+![](./img/15.jpg)
+
+### (3 bob transfer second time, will be Success
+defenseModule.safeTransfer
+* ALICE
+* 1000000000002
+![](./img/16.jpg)
+
+### (4 bob transfer three and four time, will be fail, and account be temporarily frozen
+defenseModule.safeTransfer
+* ALICE
+* 1000000000004
+![](./img/17.jpg)
+
+### (5 check the tranfer event, only 2 TransferSuccess events
+![](./img/18.jpg)
+
+## 3 test freeze account permanent
+### (1 charlie free his account 
+defenseModule.freezeAccount
+* Yes
+![](./img/20.jpg)
+
+### (2 charlie try transfer
+![](./img/21.jpg)
+
+### (3 check the tranfer event, there are not TransferSuccess event
+![](./img/22.jpg)
+
+# pallet-notification
+## test notification config
+### (1 run localservel
+
+### (2 alice set email notification config
+
+### (3 set AmountLimit to 5000000000000 and trigger fail
+
+### (4 check email notification
 
 ## ref
 pallet-notification
