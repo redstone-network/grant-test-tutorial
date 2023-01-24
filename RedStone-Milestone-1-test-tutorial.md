@@ -114,7 +114,7 @@ defenseModule.freezeAccount
 # pallet-notification
 ## test notification config
 ### (1 run localservel
-docker run -p 3030:3030 -d -name notify-serve baidang201/notification /notification
+docker run --name notify-serve -p 3030:3030 -d baidang201/notification /notification
 
 ### (2 alice set email notification config
 notification.setMail
