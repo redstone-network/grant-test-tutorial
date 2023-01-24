@@ -118,23 +118,55 @@ docker run --name notify-serve -p 3030:3030 -d baidang201/notification /notifica
 
 ### (2 alice set email notification config
 notification.setMail
-* 116174444@qq.com
-* titletest
-* body
-![](./img/23.jpg)
+* 116174xxxx@qq.com
+* notifytitle
+* notifybody
+![](./img/26.jpg)
 
-### (3 set AmountLimit to 5000000000000 
+
+### (3 alice set slack notification config
+notification.setSlack
+* https://hooks.slack.com/services/xxxxx/xxxxxx/xxxxxxxxxx
+* hello,notifymessage
+
+![](./img/27.jpg)
+
+note: you can get webhook url from https://api.slack.com/messaging/webhooks
+
+
+### (4 alice set discord notification config
+notification.setDiscord
+* https://discord.com/api/webhooks/xxxxxxx/x-xxxxxxxxxx-xx
+* notifybot
+* hello,notifycontent  
+![](./img/28.jpg)
+
+note: you can get webhook url from https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+
+
+### (5 set AmountLimit to 5000000000000 
 defenseModule.setTransferLimitation, the params is
 * AmountLimit
 *  5000000000000
 ![](./img/12.jpg)
 
-### (4 trigger fail
+
+### (6 trigger fail
+defenseModule.safeTransfer
+* BOB
+* 5000000000001
 ![](./img/24.jpg)
 
-### (5 check email notification in serve log
+### (7 check email notification in serve log
 docker logs -f notify-serve
 ![](./img/25.jpg)
+![](./img/29.jpg)
+
+### (8 check slack
+![](./img/30.jpg)
+
+### (9 check discord
+![](./img/31.jpg)
 
 ## ref
 pallet-notification
